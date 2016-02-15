@@ -1,0 +1,463 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Nicolas Chevolot">
+    <title>Mixins with type checking in Typescript - Nicolas Chevolot</title>
+    <meta name="author" content="Nicolas Chevolot">
+    
+        <meta name="keywords" content="typescript,mixins,nodejs">
+    
+    
+    
+        <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
+    
+    <meta name="description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Mixins with type checking in Typescript">
+<meta property="og:url" content="http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/index.html">
+<meta property="og:site_name" content="Nicolas Chevolot">
+<meta property="og:description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
+<meta property="og:updated_time" content="2016-02-15T12:15:38.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mixins with type checking in Typescript">
+<meta name="twitter:description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
+<meta name="twitter:creator" content="@nch3v">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-ejlztp1tasruqfvoz6xmgqng0anzae8ox7cqjj5yibieqgcmhe9fwxfae6zj.min.css" type="text/css">
+    <!--STYLES END-->
+    
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="3">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="/ ">Nicolas Chevolot</a>
+    </h1>
+    
+        
+            <a  class="header-right-picture "
+                href="/#about">
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="3">
+    
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/ "
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc">Home</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-categories"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc">Categories</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-tags"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc">Tags</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/all-archives"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc">Archives</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link st-search-show-outputs"
+                         href="/#search"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-search"></i>
+                    <span class="sidebar-button-desc">Search</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/#about"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc">About</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://github.com/nch3v" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc">GitHub</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://twitter.com/nch3v" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc">Twitter</span>
+                </a>
+        </li>
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link " href="https://fr.linkedin.com/in/nchevolot" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+                    <span class="sidebar-button-desc">LinkedIn</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+        <ul class="sidebar-buttons">
+        
+            <li class="sidebar-button">
+                
+                    <a  class="sidebar-button-link "
+                         href="/atom.xml"
+                        
+                    >
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+
+            
+            <div id="main" data-behavior="3"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post" itemscope itemType="http://schema.org/BlogPosting">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title" itemprop="headline">
+            Mixins with type checking in Typescript
+        </h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Tue Feb 09 2016 12:08:14 GMT+0100">
+	
+		    Feb 09, 2016
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/tech/">tech</a>, <a class="category-link" href="/categories/tech/dev/">dev</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown" itemprop="articleBody">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+<p>If you want to use Typescript because you think that type checking is a good thing, and that your IDE is much more clever with Typescript, you’ll soon discover that one of best feature of JavaScript is missing in Typescript : the <strong>mixins</strong>. It is a very important design patern to reduce code repetition by composing objects using reusable pieces of code.</p>
+<p>The only available solution, until now, was to duplicate class properties and method, in order to make the compiler happy then use a function to copy properties properties from mixin to the composed object. See <a href="https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Mixins.md" target="_blank" rel="external">official documentation on the subject</a>.</p>
+<p>Here I propose a way to compose objects using regular classes with no code duplication, no performance overhead, and with type checking.</p>
+<h2 id="Create_the_mixins_with_concrete_classes"><a href="#Create_the_mixins_with_concrete_classes" class="headerlink" title="Create the mixins with concrete classes"></a>Create the mixins with concrete classes</h2><p>Let’s imagine we have 3 capabilities (our mixins) implemented as classes. To make it more fun, each of them initialize its data differently.</p>
+<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=swimmer.ts"></script>
+<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=walker.ts"></script>
+<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=talker.ts"></script>
+<p>and we want some animals to have these capabilities</p>
+<ul>
+<li>the Duck is a Swimmer, a Walker, and a Talker (saying <em>coin</em>)</li>
+<li>the Fish is a Swimmer and a Talker (saying <em>bloup</em>)</li>
+</ul>
+<h2 id="Create_an_interface_that_extends_the_classes"><a href="#Create_an_interface_that_extends_the_classes" class="headerlink" title="Create an interface that extends the classes"></a>Create an interface that extends the classes</h2><p>It’s not possible in Typescript to create a class that extends those three classes. But what we can do is to create an interface that extends those classes. We can even define what signature the constructore should be.</p>
+<p>In the same file we will create a variable with same name as the interface to store a constructor for this interface. Yes it’s valid Typescript. For now let’s imagine we have a <code>compose</code> function that will create this constructor function.</p>
+<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=duck.ts"></script>
+<p>All we have to do now, is to find a way to create concrete classes that implements theses interfaces.</p>
+<h2 id="Create_a_constructor_function_implementing_the_capabilities"><a href="#Create_a_constructor_function_implementing_the_capabilities" class="headerlink" title="Create a constructor function implementing the capabilities"></a>Create a constructor function implementing the capabilities</h2><p>The idea is to create a constructor function, whose prototype will receive the properties of our mixins. So here is the compose functon</p>
+<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=class-composer.ts"></script>
+<h2 id="Use_new_operator_or_a_factory_to_create_the_objects"><a href="#Use_new_operator_or_a_factory_to_create_the_objects" class="headerlink" title="Use new operator or a factory to create the objects"></a>Use new operator or a factory to create the objects</h2><p>You can then use you Duck interface like in this sample.</p>
+<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=index.ts"></script>
+<h2 id="A_note_on_mixin_initialization"><a href="#A_note_on_mixin_initialization" class="headerlink" title="A note on mixin initialization"></a>A note on mixin initialization</h2><p>What is really cool with this solution, is that mixins work as expected when reading the code:</p>
+<ul>
+<li>the properties are initialized</li>
+<li>the constructor is called</li>
+</ul>
+<p>This is because Typescript aggregate all the initialization in the constructor function of the mixin, that we call when instantiating our composed object.</p>
+            
+                
+
+            
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br/>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/lang-en/">lang:en</a> <a class="tag tag--primary tag--small t-link" href="/tags/nodejs/">nodejs</a> <a class="tag tag--primary tag--small t-link" href="/tags/typescript/">typescript</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2016 Nicolas Chevolot. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions"  href="#btn-open-shareoptions">
+                <i class="fa fa-share-alt"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-google-plus"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-facebook-official"></i>
+            </a>
+        </li>
+        <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-twitter"></i>
+            </a>
+        </li>
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#">
+            
+                <i class="fa fa-list"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <ul class="share-options">
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+            </a>
+        </li>
+        <li class="share-option">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+                <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <h4 id="about-card-name">Nicolas Chevolot</h4>
+        
+            <h5 id="about-card-bio"><p>Started in game development, then web development and now in enterprise data tools. But interested in many more subjects.</p>
+</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>Curious developer</p>
+
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br/>
+                Annecy
+            </h5>
+        
+    </div>
+</div>
+
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/scrip-gfmrkxcl0qohe3cfdgxhzvc0yrceqta8i4iix0txvn8q4o2adlqd5n0jmkvt.min.js" type="text/javascript"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+
+</html>

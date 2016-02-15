@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Nicolas Chevolot</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://nch3v.gihub.io/"/>
+  <updated>2016-02-15T12:15:38.396Z</updated>
+  <id>http://nch3v.gihub.io/</id>
+  
+  <author>
+    <name>Nicolas Chevolot</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mixins with type checking in Typescript</title>
+    <link href="http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/"/>
+    <id>http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/</id>
+    <published>2016-02-09T11:08:14.000Z</published>
+    <updated>2016-02-15T12:15:38.396Z</updated>
+    
+    <content type="html">&lt;!-- excerpt --&gt;
+&lt;p&gt;If you want to use Typescript because you think that type checking is a good thing, and that your IDE is much more clever with Typescript, you’ll soon discover that one of best feature of JavaScript is missing in Typescript : the &lt;strong&gt;mixins&lt;/strong&gt;. It is a very important design patern to reduce code repetition by composing objects using reusable pieces of code.&lt;/p&gt;
+&lt;p&gt;The only available solution, until now, was to duplicate class properties and method, in order to make the compiler happy then use a function to copy properties properties from mixin to the composed object. See &lt;a href=&quot;https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Mixins.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;official documentation on the subject&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Here I propose a way to compose objects using regular classes with no code duplication, no performance overhead, and with type checking.&lt;/p&gt;
+&lt;h2 id=&quot;Create_the_mixins_with_concrete_classes&quot;&gt;&lt;a href=&quot;#Create_the_mixins_with_concrete_classes&quot; class=&quot;headerlink&quot; title=&quot;Create the mixins with concrete classes&quot;&gt;&lt;/a&gt;Create the mixins with concrete classes&lt;/h2&gt;&lt;p&gt;Let’s imagine we have 3 capabilities (our mixins) implemented as classes. To make it more fun, each of them initialize its data differently.&lt;/p&gt;
+&lt;script src=&quot;//gist.github.com/4c8c0ac5e03f220462a9.js?file=swimmer.ts&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//gist.github.com/4c8c0ac5e03f220462a9.js?file=walker.ts&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//gist.github.com/4c8c0ac5e03f220462a9.js?file=talker.ts&quot;&gt;&lt;/script&gt;
+&lt;p&gt;and we want some animals to have these capabilities&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the Duck is a Swimmer, a Walker, and a Talker (saying &lt;em&gt;coin&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;the Fish is a Swimmer and a Talker (saying &lt;em&gt;bloup&lt;/em&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;Create_an_interface_that_extends_the_classes&quot;&gt;&lt;a href=&quot;#Create_an_interface_that_extends_the_classes&quot; class=&quot;headerlink&quot; title=&quot;Create an interface that extends the classes&quot;&gt;&lt;/a&gt;Create an interface that extends the classes&lt;/h2&gt;&lt;p&gt;It’s not possible in Typescript to create a class that extends those three classes. But what we can do is to create an interface that extends those classes. We can even define what signature the constructore should be.&lt;/p&gt;
+&lt;p&gt;In the same file we will create a variable with same name as the interface to store a constructor for this interface. Yes it’s valid Typescript. For now let’s imagine we have a &lt;code&gt;compose&lt;/code&gt; function that will create this constructor function.&lt;/p&gt;
+&lt;script src=&quot;//gist.github.com/4c8c0ac5e03f220462a9.js?file=duck.ts&quot;&gt;&lt;/script&gt;
+&lt;p&gt;All we have to do now, is to find a way to create concrete classes that implements theses interfaces.&lt;/p&gt;
+&lt;h2 id=&quot;Create_a_constructor_function_implementing_the_capabilities&quot;&gt;&lt;a href=&quot;#Create_a_constructor_function_implementing_the_capabilities&quot; class=&quot;headerlink&quot; title=&quot;Create a constructor function implementing the capabilities&quot;&gt;&lt;/a&gt;Create a constructor function implementing the capabilities&lt;/h2&gt;&lt;p&gt;The idea is to create a constructor function, whose prototype will receive the properties of our mixins. So here is the compose functon&lt;/p&gt;
+&lt;script src=&quot;//gist.github.com/4c8c0ac5e03f220462a9.js?file=class-composer.ts&quot;&gt;&lt;/script&gt;
+&lt;h2 id=&quot;Use_new_operator_or_a_factory_to_create_the_objects&quot;&gt;&lt;a href=&quot;#Use_new_operator_or_a_factory_to_create_the_objects&quot; class=&quot;headerlink&quot; title=&quot;Use new operator or a factory to create the objects&quot;&gt;&lt;/a&gt;Use new operator or a factory to create the objects&lt;/h2&gt;&lt;p&gt;You can then use you Duck interface like in this sample.&lt;/p&gt;
+&lt;script src=&quot;//gist.github.com/4c8c0ac5e03f220462a9.js?file=index.ts&quot;&gt;&lt;/script&gt;
+&lt;h2 id=&quot;A_note_on_mixin_initialization&quot;&gt;&lt;a href=&quot;#A_note_on_mixin_initialization&quot; class=&quot;headerlink&quot; title=&quot;A note on mixin initialization&quot;&gt;&lt;/a&gt;A note on mixin initialization&lt;/h2&gt;&lt;p&gt;What is really cool with this solution, is that mixins work as expected when reading the code:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the properties are initialized&lt;/li&gt;
+&lt;li&gt;the constructor is called&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is because Typescript aggregate all the initialization in the constructor function of the mixin, that we call when instantiating our composed object.&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="tech" scheme="http://nch3v.gihub.io/categories/tech/"/>
+    
+      <category term="dev" scheme="http://nch3v.gihub.io/categories/tech/dev/"/>
+    
+    
+      <category term="lang:en" scheme="http://nch3v.gihub.io/tags/lang-en/"/>
+    
+      <category term="nodejs" scheme="http://nch3v.gihub.io/tags/nodejs/"/>
+    
+      <category term="typescript" scheme="http://nch3v.gihub.io/tags/typescript/"/>
+    
+  </entry>
+  
+</feed>
