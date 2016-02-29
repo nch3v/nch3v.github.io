@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://nch3v.gihub.io/"/>
-  <updated>2016-02-15T12:41:06.144Z</updated>
-  <id>http://nch3v.gihub.io/</id>
+  <link href="http://nch3v.github.io/"/>
+  <updated>2016-02-16T09:22:34.824Z</updated>
+  <id>http://nch3v.github.io/</id>
   
   <author>
     <name>Nicolas Chevolot</name>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>Mixins with type checking in Typescript</title>
-    <link href="http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/"/>
-    <id>http://nch3v.gihub.io/2016/02/09/Mixins-with-type-checking-in-Typescript/</id>
+    <link href="http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/"/>
+    <id>http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/</id>
     <published>2016-02-09T11:08:14.000Z</published>
-    <updated>2016-02-15T12:41:06.144Z</updated>
+    <updated>2016-02-16T09:22:34.824Z</updated>
     
     <content type="html">&lt;!-- excerpt --&gt;
 &lt;p&gt;If you want to use Typescript because you think that type checking is a good thing, and that your IDE is much more clever with Typescript, you’ll soon discover that one of best feature of JavaScript is missing in Typescript : the &lt;strong&gt;mixins&lt;/strong&gt;. It is a very important design patern to reduce code repetition by composing objects using reusable pieces of code.&lt;/p&gt;
@@ -57,16 +57,16 @@
     
     </summary>
     
-      <category term="tech" scheme="http://nch3v.gihub.io/categories/tech/"/>
+      <category term="tech" scheme="http://nch3v.github.io/categories/tech/"/>
     
-      <category term="dev" scheme="http://nch3v.gihub.io/categories/tech/dev/"/>
+      <category term="dev" scheme="http://nch3v.github.io/categories/tech/dev/"/>
     
     
-      <category term="lang:en" scheme="http://nch3v.gihub.io/tags/lang-en/"/>
+      <category term="lang:en" scheme="http://nch3v.github.io/tags/lang-en/"/>
     
-      <category term="nodejs" scheme="http://nch3v.gihub.io/tags/nodejs/"/>
+      <category term="nodejs" scheme="http://nch3v.github.io/tags/nodejs/"/>
     
-      <category term="typescript" scheme="http://nch3v.gihub.io/tags/typescript/"/>
+      <category term="typescript" scheme="http://nch3v.github.io/tags/typescript/"/>
     
   </entry>
   
