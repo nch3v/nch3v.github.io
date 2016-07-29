@@ -6,25 +6,23 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Nicolas Chevolot">
-    <title>Mixins with type checking in Typescript - Nicolas Chevolot</title>
+    <title>Migration to github.io - Nicolas Chevolot</title>
     <meta name="author" content="Nicolas Chevolot">
-    
-        <meta name="keywords" content="typescript,mixins,nodejs">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
+    <meta name="description" content="Le contenu de mes précédents blogs, relativement délaissés ces dernières années,a été migré sur http://nch3v.github.io. La génération du site est faite avecHexo.">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Mixins with type checking in Typescript">
-<meta property="og:url" content="http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/index.html">
+<meta property="og:title" content="Migration to github.io">
+<meta property="og:url" content="http://nch3v.github.io/2016/02/16/Migration-to-github-io/index.html">
 <meta property="og:site_name" content="Nicolas Chevolot">
-<meta property="og:description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
-<meta property="og:updated_time" content="2016-02-16T09:22:34.824Z">
+<meta property="og:description" content="Le contenu de mes précédents blogs, relativement délaissés ces dernières années,a été migré sur http://nch3v.github.io. La génération du site est faite avecHexo.">
+<meta property="og:updated_time" content="2016-07-29T08:51:48.512Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mixins with type checking in Typescript">
-<meta name="twitter:description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
+<meta name="twitter:title" content="Migration to github.io">
+<meta name="twitter:description" content="Le contenu de mes précédents blogs, relativement délaissés ces dernières années,a été migré sur http://nch3v.github.io. La génération du site est faite avecHexo.">
 <meta name="twitter:creator" content="@nch3v">
     
     
@@ -206,19 +204,19 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Mixins with type checking in Typescript
+            Migration to github.io
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Tue Feb 09 2016 12:08:14 GMT+0100">
+    <time itemprop="datePublished" content="Tue Feb 16 2016 19:59:29 GMT+0100">
 	
-		    Feb 09, 2016
+		    Feb 16, 2016
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/tech/">tech</a>, <a class="category-link" href="/categories/tech/dev/">dev</a>
+    <a class="category-link" href="/categories/tech/">tech</a>, <a class="category-link" href="/categories/tech/tools/">tools</a>
 
 
     
@@ -227,34 +225,8 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <!-- excerpt -->
-<p>If you want to use Typescript because you think that type checking is a good thing, and that your IDE is much more clever with Typescript, you’ll soon discover that one of best feature of JavaScript is missing in Typescript : the <strong>mixins</strong>. It is a very important design patern to reduce code repetition by composing objects using reusable pieces of code.</p>
-<p>The only available solution, until now, was to duplicate class properties and method, in order to make the compiler happy then use a function to copy properties properties from mixin to the composed object. See <a href="https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Mixins.md" target="_blank" rel="external">official documentation on the subject</a>.</p>
-<p>Here I propose a way to compose objects using regular classes with no code duplication, no performance overhead, and with type checking.</p>
-<h2 id="Create_the_mixins_with_concrete_classes"><a href="#Create_the_mixins_with_concrete_classes" class="headerlink" title="Create the mixins with concrete classes"></a>Create the mixins with concrete classes</h2><p>Let’s imagine we have 3 capabilities (our mixins) implemented as classes. To make it more fun, each of them initialize its data differently.</p>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=swimmer.ts"></script>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=walker.ts"></script>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=talker.ts"></script>
-<p>and we want some animals to have these capabilities</p>
-<ul>
-<li>the Duck is a Swimmer, a Walker, and a Talker (saying <em>coin</em>)</li>
-<li>the Fish is a Swimmer and a Talker (saying <em>bloup</em>)</li>
-</ul>
-<h2 id="Create_an_interface_that_extends_the_classes"><a href="#Create_an_interface_that_extends_the_classes" class="headerlink" title="Create an interface that extends the classes"></a>Create an interface that extends the classes</h2><p>It’s not possible in Typescript to create a class that extends those three classes. But what we can do is to create an interface that extends those classes. We can even define what signature the constructore should be.</p>
-<p>In the same file we will create a variable with same name as the interface to store a constructor for this interface. Yes it’s valid Typescript. For now let’s imagine we have a <code>compose</code> function that will create this constructor function.</p>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=duck.ts"></script>
-<p>All we have to do now, is to find a way to create concrete classes that implements theses interfaces.</p>
-<h2 id="Create_a_constructor_function_implementing_the_capabilities"><a href="#Create_a_constructor_function_implementing_the_capabilities" class="headerlink" title="Create a constructor function implementing the capabilities"></a>Create a constructor function implementing the capabilities</h2><p>The idea is to create a constructor function, whose prototype will receive the properties of our mixins. So here is the compose functon</p>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=class-composer.ts"></script>
-<h2 id="Use_new_operator_or_a_factory_to_create_the_objects"><a href="#Use_new_operator_or_a_factory_to_create_the_objects" class="headerlink" title="Use new operator or a factory to create the objects"></a>Use new operator or a factory to create the objects</h2><p>You can then use you Duck interface like in this sample.</p>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=index.ts"></script>
-<h2 id="A_note_on_mixin_initialization"><a href="#A_note_on_mixin_initialization" class="headerlink" title="A note on mixin initialization"></a>A note on mixin initialization</h2><p>What is really cool with this solution, is that mixins work as expected when reading the code:</p>
-<ul>
-<li>the properties are initialized</li>
-<li>the constructor is called</li>
-</ul>
-<p>This is because Typescript aggregate all the initialization in the constructor function of the mixin, that we call when instantiating our composed object.</p>
-<h3 id="Full_code"><a href="#Full_code" class="headerlink" title="Full code"></a>Full code</h3><p>A working sample is available here: <a href="https://github.com/nch3v/typescript-mixins" target="_blank" rel="external">https://github.com/nch3v/typescript-mixins</a></p>
+            <p>Le contenu de mes précédents blogs, relativement délaissés ces dernières années,<br>a été migré sur <a href="http://nch3v.github.io">http://nch3v.github.io</a>. La génération du site est faite avec<br><a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>.</p>
+
             
                 
 
@@ -266,7 +238,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/lang-en/">lang:en</a> <a class="tag tag--primary tag--small t-link" href="/tags/nodejs/">nodejs</a> <a class="tag tag--primary tag--small t-link" href="/tags/typescript/">typescript</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/blog/">blog</a> <a class="tag tag--primary tag--small t-link" href="/tags/lang-fr/">lang:fr</a> <a class="tag tag--primary tag--small t-link" href="/tags/perso/">perso</a> <a class="tag tag--primary tag--small t-link" href="/tags/tools/">tools</a>
 
             </div>
         
@@ -275,7 +247,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/16/Migration-to-github-io/"  data-tooltip="Migration to github.io">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -283,7 +255,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/" data-tooltip="Utilisation de Truecrypt pour sécuriser ses données sur une clé USB">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/09/Mixins-with-type-checking-in-Typescript/" data-tooltip="Mixins with type checking in Typescript">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -298,17 +270,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -356,7 +328,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/16/Migration-to-github-io/"  data-tooltip="Migration to github.io">
+                    <a class="post-action-btn btn btn--disabled">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -364,7 +336,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/" data-tooltip="Utilisation de Truecrypt pour sécuriser ses données sur une clé USB">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/09/Mixins-with-type-checking-in-Typescript/" data-tooltip="Mixins with type checking in Typescript">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -379,17 +351,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -415,17 +387,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/16/Migration-to-github-io/">
                 <i class="fa fa-twitter"></i><span>Share on Twitter</span>
             </a>
         </li>
@@ -476,9 +448,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/';
+                 this.page.url = 'http://nch3v.github.io/2016/02/16/Migration-to-github-io/';
                  
-                    this.page.identifier = 'nch3v-typescript-mixins';
+                    this.page.identifier = '2016/02/16/Migration-to-github-io/';
                                   
              };
             (function() {

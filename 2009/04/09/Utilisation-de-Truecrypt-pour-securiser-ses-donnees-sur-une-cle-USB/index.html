@@ -6,25 +6,23 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Nicolas Chevolot">
-    <title>Mixins with type checking in Typescript - Nicolas Chevolot</title>
+    <title>Utilisation de Truecrypt pour sécuriser ses données sur une clé USB - Nicolas Chevolot</title>
     <meta name="author" content="Nicolas Chevolot">
-    
-        <meta name="keywords" content="typescript,mixins,nodejs">
     
     
     
         <link rel="alternate" type="application/atom+xml" title="RSS" href="/atom.xml">
     
-    <meta name="description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
+    <meta name="description" content="Avoir toutes ses données on the cloud permet de pouvoir y accéder depuis n’importe quel PC. Cependant il arrive qu’on ne puisse avoir accès qu’à un PC sans internet ou avec un accès restreint (connexi">
 <meta property="og:type" content="blog">
-<meta property="og:title" content="Mixins with type checking in Typescript">
-<meta property="og:url" content="http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/index.html">
+<meta property="og:title" content="Utilisation de Truecrypt pour sécuriser ses données sur une clé USB">
+<meta property="og:url" content="http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/index.html">
 <meta property="og:site_name" content="Nicolas Chevolot">
-<meta property="og:description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
-<meta property="og:updated_time" content="2016-02-16T09:22:34.824Z">
+<meta property="og:description" content="Avoir toutes ses données on the cloud permet de pouvoir y accéder depuis n’importe quel PC. Cependant il arrive qu’on ne puisse avoir accès qu’à un PC sans internet ou avec un accès restreint (connexi">
+<meta property="og:updated_time" content="2016-07-29T08:48:52.128Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mixins with type checking in Typescript">
-<meta name="twitter:description" content="How to create mixins in Typescript using regular classes with no code duplication, no performance overhead, and with type checking.">
+<meta name="twitter:title" content="Utilisation de Truecrypt pour sécuriser ses données sur une clé USB">
+<meta name="twitter:description" content="Avoir toutes ses données on the cloud permet de pouvoir y accéder depuis n’importe quel PC. Cependant il arrive qu’on ne puisse avoir accès qu’à un PC sans internet ou avec un accès restreint (connexi">
 <meta name="twitter:creator" content="@nch3v">
     
     
@@ -206,19 +204,19 @@
         <div class="post-header main-content-wrap text-left">
     
         <h1 class="post-title" itemprop="headline">
-            Mixins with type checking in Typescript
+            Utilisation de Truecrypt pour sécuriser ses données sur une clé USB
         </h1>
     
     <div class="post-meta">
-    <time itemprop="datePublished" content="Tue Feb 09 2016 12:08:14 GMT+0100">
+    <time itemprop="datePublished" content="Thu Apr 09 2009 23:51:43 GMT+0200">
 	
-		    Feb 09, 2016
+		    Apr 09, 2009
     	
     </time>
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/tech/">tech</a>, <a class="category-link" href="/categories/tech/dev/">dev</a>
+    <a class="category-link" href="/categories/tech/">tech</a>, <a class="category-link" href="/categories/tech/tools/">tools</a>
 
 
     
@@ -227,34 +225,28 @@
     
     <div class="post-content markdown" itemprop="articleBody">
         <div class="main-content-wrap">
-            <!-- excerpt -->
-<p>If you want to use Typescript because you think that type checking is a good thing, and that your IDE is much more clever with Typescript, you’ll soon discover that one of best feature of JavaScript is missing in Typescript : the <strong>mixins</strong>. It is a very important design patern to reduce code repetition by composing objects using reusable pieces of code.</p>
-<p>The only available solution, until now, was to duplicate class properties and method, in order to make the compiler happy then use a function to copy properties properties from mixin to the composed object. See <a href="https://github.com/Microsoft/TypeScript-Handbook/blob/master/pages/Mixins.md" target="_blank" rel="external">official documentation on the subject</a>.</p>
-<p>Here I propose a way to compose objects using regular classes with no code duplication, no performance overhead, and with type checking.</p>
-<h2 id="Create_the_mixins_with_concrete_classes"><a href="#Create_the_mixins_with_concrete_classes" class="headerlink" title="Create the mixins with concrete classes"></a>Create the mixins with concrete classes</h2><p>Let’s imagine we have 3 capabilities (our mixins) implemented as classes. To make it more fun, each of them initialize its data differently.</p>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=swimmer.ts"></script>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=walker.ts"></script>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=talker.ts"></script>
-<p>and we want some animals to have these capabilities</p>
+            <p>Avoir toutes ses données on the cloud permet de pouvoir y accéder depuis n’importe quel PC. Cependant il arrive qu’on ne puisse avoir accès qu’à un PC sans internet ou avec un accès restreint (connexion lente, proxy avec filtrage,…) ou bien avoir besoin d’application qui n’ont pas d’équivalent en ligne. Pour être sûr d’accéder à ses données et programmes en permanence, la seule solution est de les emporter avec soi sur une clé USB.</p>
+<a id="more"></a>
+<h2 id="Utilisation_d_u2019applications_portables"><a href="#Utilisation_d_u2019applications_portables" class="headerlink" title="Utilisation d’applications portables"></a>Utilisation d’applications portables</h2><p>Pour les données, pas de problème, il suffit de copier les fichiers en question sur la clé. Pour les applications, c’est un peu plus compliqué car il faut que l’application puisse s’exécuter sans avoir été installée au préalable et soit conçue pour stocker ses paramètres de configuration et autres données de travail en local et non sur le système hôte. On parle dans ce cas d’applications portables ou portable apps. Vous trouverez plus loin dans ce billet quelques exemples de portable apps gratuites (et même open source). Les plus pressés peuvent se rendre directement sur le site de référence <a href="http://portableapps.com/" target="_blank" rel="external">http://portableapps.com/</a>. Notez qu’il existe d’autre applications portables que celles référencées sur ce site.</p>
+<p>Cependant, stocker données et applications sur une clé USB pose les problèmes suivant :</p>
+<h3 id="S_E9curit_E9"><a href="#S_E9curit_E9" class="headerlink" title="Sécurité"></a>Sécurité</h3><p>Vos données ne sont peut-être pas destinées à être rendu publique, c’est pourtant ce qui va arriver si vous égarez votre clé. La seule solution pour cela est le cryptage de la clé. Heureusement nous allons voir qu’il existe une solution simple et pratique pour crypter vos données de manière totalement transparente.</p>
+<h3 id="Fiabilit_E9"><a href="#Fiabilit_E9" class="headerlink" title="Fiabilité"></a>Fiabilité</h3><p>Une clé USB n’est pas, tout comme les disques durs, un moyen de stockage fiable. Il ne faut donc jamais se contenter d’un seul exemplaire de ses données sur un clé USB car celle vous lâchera forcément un jour. La seule solution est de mettre en place une procédure de sauvegarde des données sur d’autre support et même si besoin faire des sauvegardes en ligne.</p>
+<h2 id="La_solution__3A_TrueCrypt"><a href="#La_solution__3A_TrueCrypt" class="headerlink" title="La solution : TrueCrypt"></a>La solution : TrueCrypt</h2><p>Pour ceux qui ne connaissent pas, TrueCrypt (<a href="http://www.truecrypt.org/" target="_blank" rel="external">http://www.truecrypt.org/</a>) est un un outil open source, et par conséquent gratuit et fiable, pour crypter les données à la volée. Le cryptage à la volée permet de travailler sans changer ses habitudes, le logiciel s’occupant de décrypter à la lecture d’un fichier et de le crypter à la sauvegarde. Il devient donc possible, par exemple, de travailler avec Word sur un document crypté sur votre clé USB.</p>
+<p>La mise en place de TrueCrypt est simplissime. Une fois dézippé (TrueCrypt étant une application portable donc sans installation), il suffit de lancer TrueCryptFormat et de se laisser guider pour créer une partition cryptée. Cette partition peut-ête stockée dans un fichier classique sur votre clé USB. Le programme TrueCrypt agit ensuite comme un driver permettant d’accéder à cette partition, à condition bien sûr de rentrer le mot passe adéquat.</p>
+<p>Le cryptage de TrueCrypt est basé sur des algorithmes certifiés par la NSA, son implémentation open source garantissant qu’il n’y a pas de fonctionnalités cachées pour permettre l’accès à vos données.</p>
+<h3 id="Les_autres_avantages_d_u2019une_partition_TrueCrypt"><a href="#Les_autres_avantages_d_u2019une_partition_TrueCrypt" class="headerlink" title="Les autres avantages d’une partition TrueCrypt"></a>Les autres avantages d’une partition TrueCrypt</h3><p>Même si l’utilité première de TrueCrypt est que les données sont protégées d’un accès malveillant, il y a pourtant un autre avantage. Le stockage de toute une partition dans un seul fichier permet de manipuler tous ces fichiers à travers un seul. Il suffit par exemple de copier ce fichier pour faire une sauvegarde de toute la partition. En automatisant la copie du fichier/partition lors de l’introduction de la clé USB, nous avons alors la possibilité de mettre en place un système relativement fiable de sauvegarde de vos données. De plus le tout étant crypté, vous pouvez vous permettre le luxe de laisser des copies multiples de vos données même sur des ordinateurs publiques. Même si quelqu’un à accès au fichier, il lui sera impossible d’accéder aux données sans le mot de passe. Il est par conséquent possible de stocker votre partition sur l’un des multiples service de backup en ligne disponible actuellement. Personnellement j’utilise à l’occasion le service partage de fichier de free <a href="http://dl.free.fr" target="_blank" rel="external">http://dl.free.fr</a> qui me garantit un accès à mon fichier pendant 30 jours.</p>
+<p>Notez aussi qu’avec TrueCrypt, on peut choisir le lecteur qui sur lequel sera mountée la partition. En fixant celle-ci dans les préférences, vous permettez à certains logiciels qui utilisent des chemins en dur de retrouver leur petits quelque soit la configuration du PC hôte.</p>
+<h2 id="En_pratique"><a href="#En_pratique" class="headerlink" title="En pratique"></a>En pratique</h2><p>Personnellement, je me sers d’une partition cryptée pour sauvegarder mon environnement de travail et pourvoir intervenir en urgence sur un projet où que je sois. J’ai donc installé les logiciels suivants, la plupart disponibles sur <a href="http://portableapps.com/" target="_blank" rel="external">http://portableapps.com/</a> :</p>
 <ul>
-<li>the Duck is a Swimmer, a Walker, and a Talker (saying <em>coin</em>)</li>
-<li>the Fish is a Swimmer and a Talker (saying <em>bloup</em>)</li>
+<li>Firefox (et les extensions qui vont bien) : Le navigateur étant un des logiciels les plus importants, il est évident que j’emmène le mien partout. De plus avec l’extension Google Gears, je peux accédez à mes mails (GMail) et à mes flux RSS (Google Reader) même en l’absence de connexion internet.</li>
+<li>Notepad++ : Excellent éditeur de code qui peut être enrichi grâce à ses nombreux plugins</li>
+<li>FileZilla : client FTP</li>
+<li>putty : pour administrer le serveur via ssh</li>
+<li>XAMPLite : Apache/MySQL/PHP pour bosser en local</li>
 </ul>
-<h2 id="Create_an_interface_that_extends_the_classes"><a href="#Create_an_interface_that_extends_the_classes" class="headerlink" title="Create an interface that extends the classes"></a>Create an interface that extends the classes</h2><p>It’s not possible in Typescript to create a class that extends those three classes. But what we can do is to create an interface that extends those classes. We can even define what signature the constructore should be.</p>
-<p>In the same file we will create a variable with same name as the interface to store a constructor for this interface. Yes it’s valid Typescript. For now let’s imagine we have a <code>compose</code> function that will create this constructor function.</p>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=duck.ts"></script>
-<p>All we have to do now, is to find a way to create concrete classes that implements theses interfaces.</p>
-<h2 id="Create_a_constructor_function_implementing_the_capabilities"><a href="#Create_a_constructor_function_implementing_the_capabilities" class="headerlink" title="Create a constructor function implementing the capabilities"></a>Create a constructor function implementing the capabilities</h2><p>The idea is to create a constructor function, whose prototype will receive the properties of our mixins. So here is the compose functon</p>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=class-composer.ts"></script>
-<h2 id="Use_new_operator_or_a_factory_to_create_the_objects"><a href="#Use_new_operator_or_a_factory_to_create_the_objects" class="headerlink" title="Use new operator or a factory to create the objects"></a>Use new operator or a factory to create the objects</h2><p>You can then use you Duck interface like in this sample.</p>
-<script src="//gist.github.com/4c8c0ac5e03f220462a9.js?file=index.ts"></script>
-<h2 id="A_note_on_mixin_initialization"><a href="#A_note_on_mixin_initialization" class="headerlink" title="A note on mixin initialization"></a>A note on mixin initialization</h2><p>What is really cool with this solution, is that mixins work as expected when reading the code:</p>
-<ul>
-<li>the properties are initialized</li>
-<li>the constructor is called</li>
-</ul>
-<p>This is because Typescript aggregate all the initialization in the constructor function of the mixin, that we call when instantiating our composed object.</p>
-<h3 id="Full_code"><a href="#Full_code" class="headerlink" title="Full code"></a>Full code</h3><p>A working sample is available here: <a href="https://github.com/nch3v/typescript-mixins" target="_blank" rel="external">https://github.com/nch3v/typescript-mixins</a></p>
+<p>Le fait de travailler dans une partition cryptée me permet d’avoir mes outils et mes différents comptes paramétrés en permanence ainsi que mes scripts pour mettre à jour les serveurs ou faire des sauvegardes manuelles. Je ne crains absolument pas qu’en perdant ma clé USB, quelqu’un puisse accéder mon serveur ou a des données qui mettraient celui-ci en danger.</p>
+<p>J’ai aussi écrit un petit script batch qui me fais une copie de la partition sur le disque sur du PC avant de l’utiliser. Je peux ainsi travailler l’esprit tranquille sachant qu’une copie (et même celles des jours précédents) existe. En fait, je travaille directement sur cette copie afin de ne pas user prématurément la clé USB avec des accès trop fréquents, un script s’occupant d’unmounter la partition et de la recopier sur la clé.</p>
+
             
                 
 
@@ -266,7 +258,7 @@
             <div class="post-footer-tags">
                 <span class="text-color-light text-small">TAGGED IN</span><br/>
                 
-    <a class="tag tag--primary tag--small t-link" href="/tags/lang-en/">lang:en</a> <a class="tag tag--primary tag--small t-link" href="/tags/nodejs/">nodejs</a> <a class="tag tag--primary tag--small t-link" href="/tags/typescript/">typescript</a>
+    <a class="tag tag--primary tag--small t-link" href="/tags/lang-fr/">lang:fr</a> <a class="tag tag--primary tag--small t-link" href="/tags/securite/">securité</a> <a class="tag tag--primary tag--small t-link" href="/tags/tools/">tools</a>
 
             </div>
         
@@ -275,7 +267,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/16/Migration-to-github-io/"  data-tooltip="Migration to github.io">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/09/Mixins-with-type-checking-in-Typescript/"  data-tooltip="Mixins with type checking in Typescript">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -283,7 +275,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/" data-tooltip="Utilisation de Truecrypt pour sécuriser ses données sur une clé USB">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/03/30/Pixbreak-photo-social-bookmarking/" data-tooltip="Pixbreak : photo social bookmarking">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -298,17 +290,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -356,7 +348,7 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/16/Migration-to-github-io/"  data-tooltip="Migration to github.io">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/09/Mixins-with-type-checking-in-Typescript/"  data-tooltip="Mixins with type checking in Typescript">
                 
                     <i class="fa fa-angle-left"></i>
                     <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
@@ -364,7 +356,7 @@
             </li>
             <li class="post-action">
                 
-                    <a class="post-action-btn btn btn--default tooltip--top" href="/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/" data-tooltip="Utilisation de Truecrypt pour sécuriser ses données sur une clé USB">
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2008/03/30/Pixbreak-photo-social-bookmarking/" data-tooltip="Pixbreak : photo social bookmarking">
                 
                     <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
                     <i class="fa fa-angle-right"></i>
@@ -379,17 +371,17 @@
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-google-plus"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-facebook-official"></i>
             </a>
         </li>
         <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-twitter"></i>
             </a>
         </li>
@@ -415,17 +407,17 @@
                 <div id="share-options-bar" class="share-options-bar" data-behavior="3">
     <ul class="share-options">
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-google-plus"></i><span class="">Share on Google Plus</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
             </a>
         </li>
         <li class="share-option">
-            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/">
+            <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/">
                 <i class="fa fa-twitter"></i><span>Share on Twitter</span>
             </a>
         </li>
@@ -476,9 +468,9 @@
     
         <script>
              var disqus_config = function () {
-                 this.page.url = 'http://nch3v.github.io/2016/02/09/Mixins-with-type-checking-in-Typescript/';
+                 this.page.url = 'http://nch3v.github.io/2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/';
                  
-                    this.page.identifier = 'nch3v-typescript-mixins';
+                    this.page.identifier = '2009/04/09/Utilisation-de-Truecrypt-pour-securiser-ses-donnees-sur-une-cle-USB/';
                                   
              };
             (function() {
